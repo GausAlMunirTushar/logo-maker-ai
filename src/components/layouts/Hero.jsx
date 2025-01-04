@@ -1,7 +1,11 @@
-import React from "react";
+"use client";
+import { useState } from "react";
 import { Button } from "../ui/button";
+import Link from "next/link";
 
 const Hero = () => {
+	const [logoTitle, setLogoTitle] = useState("");
+
 	return (
 		<div className="container mx-auto flex flex-col items-center justify-center h-screen">
 			<h1 className="text-4xl font-bold my-2 text-center">
@@ -17,11 +21,14 @@ const Hero = () => {
 				<input
 					className="px-4 py-2.5 border border-gray-600 rounded-s-lg focus:outline-none"
 					type="text"
-					placeholder=""
+					placeholder="Enter your business name"
+					onChange={(e) => setLogoTitle(e.target.value)}
 				/>
-				<Button className="px-4 py-[23px] rounded-s-none">
-					Get Started
-				</Button>
+				<Link href={`/create/?title=${logoTitle}`}>
+					<Button className="px-4 py-[23px] rounded-s-none">
+						Generate
+					</Button>
+				</Link>
 			</div>
 		</div>
 	);
